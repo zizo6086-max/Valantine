@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine ❤️</title>
+    <!-- Google Fonts: Playfair Display for Headers, Lato for Body -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff758c;
+            --secondary: #ff7eb3;
+            --accent: #d63384;
+            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --glass: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text: #2c3e50;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text);
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating Hearts Background */
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(110vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Side Tree Animation - More Realistic */
+        .tree-container {
+            position: absolute;
+            bottom: -20px;
+            left: -80px;
+            width: 600px;
+            height: 700px;
+            z-index: 100;
+            /* Brought to front but pointer-events none */
+            pointer-events: none;
+            filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
+            opacity: 0.95;
+            display: block;
+            /* Visible by default */
+        }
+
+        .tree-svg {
+            width: 100%;
+            height: 100%;
+            transform-origin: bottom center;
+            animation: treeSway 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes treeSway {
+            from {
+                transform: rotate(-1deg);
+            }
+
+            to {
+                transform: rotate(2deg);
+            }
+        }
+
+        /* Petals */
+        .petal {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffb7b2;
+            border-radius: 100% 0 100% 0;
+            opacity: 0.8;
+            top: 250px;
+            left: 200px;
+            animation: fall 12s linear infinite;
+            z-index: 101;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+
+            20% {
+                transform: translate(40px, 100px) rotate(90deg);
+                opacity: 0.9;
+            }
+
+            40% {
+                transform: translate(-20px, 200px) rotate(180deg);
+            }
+
+            60% {
+                transform: translate(30px, 300px) rotate(270deg);
+            }
+
+            100% {
+                transform: translate(60px, 500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Container */
+        .page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 200;
+            /* Above tree */
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            max-width: 90%;
+            width: 500px;
+            animation: fadeIn 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2 {
+            font-family: 'Playfair Display', serif;
+            /* Clearer, elegant font */
+            margin: 0 0 1.5rem 0;
+            color: #b71c1c;
+            /* Deep romantic red */
+            line-height: 1.2;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .clock-container {
+            font-size: 5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Buttons */
+        button {
+            padding: 14px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            outline: none;
+            margin: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 117, 140, 0.5);
+        }
+
+        /* Page 2 Specifics */
+        .btn-group {
+            position: relative;
+            /* Flex needed for centering */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            min-height: 80px;
+            /* Space for buttons */
+        }
+
+        #noBtn {
+            background: #7f8c8d;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Class to make button disappear */
+        .hidden-btn {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+        }
+
+        #yesBtn {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+
+        #yesBtn:hover {
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.6);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .page {
+                width: 85%;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .clock-container {
+                font-size: 3.5rem;
+            }
+
+            /* On mobile, tree should move to background or shrink */
+            .tree-container {
+                left: -40px;
+                width: 300px;
+                height: 400px;
+                opacity: 0.6;
+                /* Fade it out slightly on mobile to prioritize text */
+                bottom: -10px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                /* Stack buttons on mobile */
+            }
+
+            button {
+                width: 100%;
+                /* Full width buttons */
+                margin: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                /* 1 column gallery */
+            }
+
+            .page {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+      AUDIO TRACK:
+      If you have a specific GitHub Raw URL, paste it below in the src attribute.
+      For now, using a placeholder/royalty-free source.
+      Example Github Raw: https://raw.githubusercontent.com/username/repo/main/song.mp3
+    -->
+    <audio id="loveSong" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- REALISTIC TREE SVG -->
+    <div class="tree-container">
+        <!-- Falling Petals -->
+        <div class="petal" style="animation-delay: 0s; left: 50%;"></div>
+        <div class="petal" style="animation-delay: 3s; left: 30%;"></div>
+        <div class="petal" style="animation-delay: 5s; left: 60%;"></div>
+        <div class="petal" style="animation-delay: 7s; left: 40%;"></div>
+        <div class="petal" style="animation-delay: 2s; left: 55%;"></div>
+
+        <svg class="tree-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+            <!-- Trunk Details -->
+            <path d="M250,600 C200,550 280,500 240,400 C210,320 260,250 250,150" stroke="#5d4037" stroke-width="35"
+                stroke-linecap="round" fill="none" />
+
+            <path d="M250,600 C280,550 260,500 290,400" stroke="#4e342e" stroke-width="20" stroke-linecap="round"
+                fill="none" opacity="0.5" />
+
+            <!-- Branches Left -->
+            <path d="M240,400 Q180,350 120,380" stroke="#5d4037" stroke-width="12" fill="none" />
+            <path d="M120,380 Q90,360 70,390" stroke="#5d4037" stroke-width="8" fill="none" />
+
+            <path d="M250,300 Q150,250 100,200" stroke="#5d4037" stroke-width="10" fill="none" />
+            <path d="M100,200 Q70,180 50,190" stroke="#5d4037" stroke-width="6" fill="none" />
+
+            <!-- Branches Right -->
+            <path d="M245,350 Q300,300 350,320" stroke="#5d4037" stroke-width="10" fill="none" />
+            <path d="M350,320 Q400,310 420,340" stroke="#5d4037" stroke-width="6" fill="none" />
+
+            <path d="M250,220 Q320,180 380,150" stroke="#5d4037" stroke-width="9" fill="none" />
+
+            <!-- Canopy / Leaves (Simulated with aggregated circles for fluffy look) -->
+            <g fill="#ffb7b2" opacity="0.9">
+                <!-- Left Clusters -->
+                <circle cx="120" cy="380" r="25" />
+                <circle cx="100" cy="360" r="20" />
+                <circle cx="140" cy="370" r="18" />
+
+                <circle cx="100" cy="200" r="30" />
+                <circle cx="80" cy="190" r="20" />
+                <circle cx="120" cy="210" r="25" />
+
+                <!-- Top Center Clusters -->
+                <circle cx="250" cy="150" r="40" />
+                <circle cx="220" cy="140" r="30" />
+                <circle cx="280" cy="160" r="30" />
+                <circle cx="250" cy="120" r="25" />
+
+                <!-- Right Clusters -->
+                <circle cx="350" cy="320" r="28" />
+                <circle cx="370" cy="300" r="22" />
+                <circle cx="330" cy="310" r="20" />
+
+                <circle cx="380" cy="150" r="35" />
+                <circle cx="400" cy="140" r="25" />
+                <circle cx="360" cy="160" r="25" />
+            </g>
+
+            <!-- Darker Pink Accents for Depth -->
+            <g fill="#ff80ab" opacity="0.6">
+                <circle cx="240" cy="160" r="15" />
+                <circle cx="110" cy="200" r="10" />
+                <circle cx="360" cy="150" r="12" />
+                <circle cx="350" cy="310" r="10" />
+            </g>
+        </svg>
+    </div>
+
+    <!-- Page 1: Clock -->
+    <div id="page1" class="page active">
+        <div class="clock-container">11:11</div>
+        <h2>Make a wish, my love...</h2>
+        <button class="btn-primary" onclick="nextPage(2)">I've made my wish ✨</button>
+    </div>
+
+    <!-- Page 2: Question -->
+    <div id="page2" class="page">
+        <h1>Will you be my Valentine?</h1>
+        <p>This year, next year, and every year after? ❤️</p>
+        <div class="btn-group">
+            <button id="yesBtn" class="btn-primary" onclick="celebrate()">YES!</button>
+            <button id="noBtn" class="btn-primary" style="background: #e74c3c; border-color: #c0392b;">No</button>
+        </div>
+    </div>
+
+    <!-- Page 3: Gallery -->
+    <div id="page3" class="page" style="width: 600px;">
+        <h1>I love you! ❤️</h1>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                alt="Love 1">
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                alt="Love 2">
+            <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                alt="Love 3">
+            <img src="https://images.unsplash.com/photo-1621644827024-e8a6c903fb1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                alt="Love 4">
+        </div>
+        <p class="final-msg">You're the best thing that ever happened to me.</p>
+    </div>
+
+    <script>
+        // Floating Hearts Logic for Background
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        setInterval(createHeart, 500);
+
+        // Page Navigation
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none';
+            });
+            const newPage = document.getElementById('page' + pageNumber);
+            newPage.style.display = 'flex';
+            setTimeout(() => newPage.classList.add('active'), 10);
+        }
+
+        // Button Interactions
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        // No button disappears on hover
+        noBtn.addEventListener('mouseover', () => {
+            noBtn.classList.add('hidden-btn');
+            // Optional: reset it after a few seconds if you want to be tricky, 
+            // but "disappear" usually means gone for good until reset.
+            // setTimeout(() => noBtn.classList.remove('hidden-btn'), 2000); 
+        });
+
+        // Mobile support: touchstart
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // prevent click
+            noBtn.classList.add('hidden-btn');
+        });
+
+        // Final Celebration
+        function celebrate() {
+            const song = document.getElementById('loveSong');
+            song.volume = 0.5;
+            song.play().catch(e => console.log("Interaction required for audio"));
+
+            // Explosion of hearts
+            for (let i = 0; i < 30; i++) setTimeout(createHeart, i * 50);
+
+            nextPage(3);
+        }
+    </script>
+</body>
+
+</html>
